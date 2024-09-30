@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/29 19:01:49 by alisseye          #+#    #+#             */
-/*   Updated: 2024/09/30 17:45:57 by alisseye         ###   ########.fr       */
+/*   Created: 2024/09/30 16:24:11 by alisseye          #+#    #+#             */
+/*   Updated: 2024/09/30 17:10:47 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_printstr(char *str)
 {
-	va_list	args;
-	int		printed;
+	int	len;
 
-	printed = 0;
-	va_start(args, format);
-	while (*format)
+	len = 0;
+	while (str[len])
 	{
-		write(1, format, 1);
-		if (*format == '%')
-		{
-			printed += ft_printelem(format, args);
-			format += 2;
-		}
-		else
-		{
-			ft_putchar_fd(*format, 1);
-			printed++;
-		}
+		ft_putchar_fd(str[len], 1);
+		len++;
 	}
-	va_end(args);
-	return (printed);
+	return (len);
 }

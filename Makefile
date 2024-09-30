@@ -6,37 +6,48 @@
 #    By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/28 17:33:54 by alisseye          #+#    #+#              #
-#    Updated: 2024/09/28 22:09:41 by alisseye         ###   ########.fr        #
+#    Updated: 2024/09/30 17:15:27 by alisseye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = 
+SRCS = ft_printf.c ft_printelem.c ft_printchar.c ft_printstr.c\
+	ft_printvoid.c ft_printnum.c ft_printunum.c ft_printhex.c\
+	ft_utoa.c ft_utox.c
 
 OBJS = ${SRCS:.c=.o}
 
-INCLUDES = 
+INCLUDES = ft_printf.h
+
+LIBFT_PATH = libft
+
+LIBFT = ${LIBFT_PATH}/libft.a
 
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@
 
-${NAME}: ${OBJS}
+${LIBFT}:
+	make -C libft
+
+${NAME}: ${LIBFT} ${OBJS}
+	cp ${LIBFT} ${NAME}
 	ar rc ${NAME} ${OBJS}
 
 all: ${NAME}
 
-bonus: ${OBJS} ${BOBJS}
-	ar rc ${NAME} ${OBJS} ${BOBJS}
+bonus: all
 	
 clean:
-	rm -f ${OBJS} ${BOBJS}
+	make -C ${LIBFT_PATH} clean
+	rm -f ${OBJS}
 
 fclean: clean
+	make -C ${LIBFT_PATH} fclean
 	rm -f ${NAME}
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: ${LIBFT} all bonus clean fclean re 

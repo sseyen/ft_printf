@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printhex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/29 19:01:49 by alisseye          #+#    #+#             */
-/*   Updated: 2024/09/30 17:45:57 by alisseye         ###   ########.fr       */
+/*   Created: 2024/09/30 16:37:09 by alisseye          #+#    #+#             */
+/*   Updated: 2024/09/30 17:42:33 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_printhex(unsigned int n, int uppercase)
 {
-	va_list	args;
-	int		printed;
+	char	*ptr;
+	int		len;
 
-	printed = 0;
-	va_start(args, format);
-	while (*format)
+	ptr = ft_utox(n, uppercase);
+	if (!ptr)
+		return (0);
+	len = 0;
+	while (ptr[len])
 	{
-		write(1, format, 1);
-		if (*format == '%')
-		{
-			printed += ft_printelem(format, args);
-			format += 2;
-		}
-		else
-		{
-			ft_putchar_fd(*format, 1);
-			printed++;
-		}
+		ft_putchar_fd(ptr[len], 1);
+		len++;
 	}
-	va_end(args);
-	return (printed);
+	return (len);
 }
