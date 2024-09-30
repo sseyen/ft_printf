@@ -1,1 +1,5 @@
-try.c
+tester*
+*_bonus*
+*.out
+*.o
+*.a

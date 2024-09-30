@@ -1,61 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_utox.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/21 12:30:53 by alisseye          #+#    #+#             */
-/*   Updated: 2024/09/29 19:52:56 by alisseye         ###   ########.fr       */
+/*   Created: 2024/09/29 20:21:47 by alisseye          #+#    #+#             */
+/*   Updated: 2024/09/30 17:37:30 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static int	ft_numlen(int n)
+static int	ft_hexlen(unsigned int n)
 {
 	int	len;
 
 	len = 0;
-	if (n <= 0)
-		len++;
+	if (n == 0)
+		len = 1;
 	while (n)
 	{
-		n /= 10;
 		len++;
+		n /= 16;
 	}
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char	*ft_utox(unsigned int n, int uppercase)
 {
 	char	*str;
+	char	*digits;
+	char	digit;
 	int		len;
-	long	nbr;
 
-	len = ft_numlen(n);
+	digits = "0123456789abcdef";
+	len = ft_hexlen(n);
 	str = (char *)malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	str[len--] = '\0';
-	nbr = n;
-	if (n < 0)
+	while (len >= 0)
 	{
-		nbr = -nbr;
-		str[0] = '-';
-	}
-	while (len >= 0 && str[len] != '-')
-	{
-		str[len] = '0' + (nbr % 10);
-		nbr /= 10;
+		digit = digits[n % 16];
+		if (uppercase)
+			digit = ft_toupper(digit);
+		str[len] = digit;
+		n /= 16;
 		len--;
 	}
 	return (str);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	int	n = -2147483648;	
-// 	printf("%s\n", ft_itoa(n));
-// }
