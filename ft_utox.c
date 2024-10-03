@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 20:21:47 by alisseye          #+#    #+#             */
-/*   Updated: 2024/09/30 17:37:30 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/10/02 11:31:57 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static int	ft_hexlen(unsigned int n)
 
 char	*ft_utox(unsigned int n, int uppercase)
 {
-	char	*str;
-	char	*digits;
-	char	digit;
-	int		len;
+	char			*str;
+	char			*digits;
+	char			digit;
+	int				len;
 
 	digits = "0123456789abcdef";
 	len = ft_hexlen(n);
