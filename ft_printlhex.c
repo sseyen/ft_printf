@@ -1,45 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa.c                                          :+:      :+:    :+:   */
+/*   ft_printlhex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/29 19:53:10 by alisseye          #+#    #+#             */
-/*   Updated: 2024/10/01 14:14:32 by alisseye         ###   ########.fr       */
+/*   Created: 2024/09/30 16:37:09 by alisseye          #+#    #+#             */
+/*   Updated: 2024/10/02 11:31:30 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_unumlen(unsigned int n)
+int	ft_printlhex(unsigned long n, int uppercase)
 {
-	int	len;
-
-	len = 1;
-	while (n >= 10)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
-}
-
-char	*ft_utoa(unsigned int n)
-{
-	char	*str;
+	char	*ptr;
 	int		len;
 
-	len = ft_unumlen(n);
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	str[len--] = '\0';
-	while (len >= 0)
+	ptr = ft_ultox(n, uppercase);
+	if (!ptr)
+		return (0);
+	len = 0;
+	while (ptr[len])
 	{
-		str[len] = '0' + (n % 10);
-		n /= 10;
-		len--;
+		ft_putchar_fd(ptr[len], 1);
+		len++;
 	}
-	return (str);
+	free(ptr);
+	return (len);
 }

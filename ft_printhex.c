@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:37:09 by alisseye          #+#    #+#             */
-/*   Updated: 2024/09/30 17:42:33 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/10/02 11:26:15 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	ft_printhex(unsigned int n, int uppercase)
 		ft_putchar_fd(ptr[len], 1);
 		len++;
 	}
+	free(ptr);
 	return (len);
 }

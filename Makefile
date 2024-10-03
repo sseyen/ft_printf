@@ -6,7 +6,7 @@
 #    By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/28 17:33:54 by alisseye          #+#    #+#              #
-#    Updated: 2024/09/30 17:15:27 by alisseye         ###   ########.fr        #
+#    Updated: 2024/10/02 11:34:31 by alisseye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_printf.c ft_printelem.c ft_printchar.c ft_printstr.c\
 	ft_printvoid.c ft_printnum.c ft_printunum.c ft_printhex.c\
-	ft_utoa.c ft_utox.c
+	ft_printlhex.c ft_utoa.c ft_utox.c ft_ultox.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -37,8 +37,6 @@ ${NAME}: ${LIBFT} ${OBJS}
 	ar rc ${NAME} ${OBJS}
 
 all: ${NAME}
-
-bonus: all
 	
 clean:
 	make -C ${LIBFT_PATH} clean

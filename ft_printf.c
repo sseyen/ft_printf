@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 19:01:49 by alisseye          #+#    #+#             */
-/*   Updated: 2024/09/30 17:45:57 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:28:58 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
-		write(1, format, 1);
 		if (*format == '%')
 		{
-			printed += ft_printelem(format, args);
-			format += 2;
+			format++;
+			printed += ft_printelem(format, &args);
+			format++;
 		}
 		else
 		{
 			ft_putchar_fd(*format, 1);
 			printed++;
+			format++;
 		}
 	}
 	va_end(args);
