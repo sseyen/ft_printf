@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 19:07:43 by alisseye          #+#    #+#             */
-/*   Updated: 2024/10/03 14:40:04 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:54:30 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printelem(const char *format, va_list *ap)
 	else if (*format == 's')
 		return (ft_printstr(va_arg(*ap, char *)));
 	else if (*format == 'p')
-		return (ft_printvoid(va_arg(*ap, void *)));
+		return (ft_printptr(va_arg(*ap, void *)));
 	else if (*format == 'd' || *format == 'i')
 		return (ft_printnum(va_arg(*ap, int)));
 	else if (*format == 'u')
