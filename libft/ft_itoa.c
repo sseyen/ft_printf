@@ -6,7 +6,7 @@
 /*   By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 12:30:53 by alisseye          #+#    #+#             */
-/*   Updated: 2024/09/29 19:52:56 by alisseye         ###   ########.fr       */
+/*   Updated: 2024/10/11 21:32:17 by alisseye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ char	*ft_itoa(int n)
 		nbr = -nbr;
 		str[0] = '-';
 	}
-	while (len >= 0 && str[len] != '-')
+	if (nbr == 0)
+		str[0] = '0';
+	while (nbr > 0)
 	{
 		str[len] = '0' + (nbr % 10);
 		nbr /= 10;
