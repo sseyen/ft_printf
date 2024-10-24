@@ -6,7 +6,7 @@
 #    By: alisseye <alisseye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/28 17:33:54 by alisseye          #+#    #+#              #
-#    Updated: 2024/10/11 19:53:46 by alisseye         ###   ########.fr        #
+#    Updated: 2024/10/24 14:10:43 by alisseye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,11 @@ LIBFT = ${LIBFT_PATH}/libft.a
 	cc $(CFLAGS) -c $< -o $@
 
 ${NAME}: ${LIBFT} ${OBJS}
-	cp ${LIBFT} ${NAME}
 	ar rc ${NAME} ${OBJS}
 
 ${LIBFT}:
 	make -C libft
+	cp ${LIBFT} ${NAME}
 
 all: ${NAME}
 	
@@ -48,4 +48,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: ${LIBFT} all bonus clean fclean re 
+.PHONY: all bonus clean fclean re 
